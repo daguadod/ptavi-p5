@@ -101,7 +101,7 @@ SIP?
 * ¿Qué método SIP utiliza el UA para registrarse?
     Utiliza el método REGISTER como hemos mencionado anteriormente.
 * Además de REGISTER, ¿podrı́as decir qué instrucciones SIP entiende el UA?
-    SIP entiende las instrucciones: ALLOW,ACK,OPTIONS,BYE,CANCEL,NOTI
+    SIP entiende las instrucciones: INVITE, ACK, OPTIONS, BYE, CANCEL, NOTIFY, REFER y MESSAGE.
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 9. Fijémonos en las tramas siguientes a la número 46:
