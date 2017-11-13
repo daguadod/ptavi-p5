@@ -106,12 +106,17 @@ SIP?
 
 9. Fijémonos en las tramas siguientes a la número 46:
 * ¿Se registra con éxito en el primer intento?
+    No, el registro se realiza con éxito en el segundo intento.
 * ¿Cómo sabemos si el registro se ha realizado correctamente o no?
+    Lo sabemos porque le llega un mensaje 401:Unauthorized
+    Después del segundo intento, el servidor Registrar le envía un 200 OK
 * ¿Podrı́as identificar las diferencias entre el primer intento y el
 segundo de registro? (fı́jate en el tamaño de los paquetes y mira
 a qué se debe el cambio)
+    El paquete del primer intento tiene 523 bytes mientras que el paquete del segundo intento tiene 712 debido a que el segundo lleva la autorización.
 * ¿Cuánto es el valor del tiempo de expiración de la sesión? Indica
 las unidades.
+    3600 segundos.
 
 10. Una vez registrados, podemos efectuar una llamada. Vamos a probar
 con el servicio de eco de Ekiga que nos permite comprobar si nos
@@ -119,18 +124,26 @@ hemos conectado correctamente. El servicio de eco tiene la dirección
 sip:500@ekiga.net. Veamos el INVITE de cerca.
 * ¿Puede verse el nombre del que efectúa la llamada, ası́ como su
 dirección SIP?
+    Si, en el campo From: 'Gregorio Robles' (sip:grex@ekiga.net)
 * ¿Qué es lo que contiene el cuerpo de la trama? ¿En qué formato/protocolo está?
+    La descripción de la sesión, el protocolo SDP.
 * ¿Tiene éxito el primer intento? ¿Cómo lo sabes?
+    No, lo sabemos porque se recibe un 407 Proxy Authentication error.
 * ¿En qué se diferencia el segundo INVITE más abajo del primero?
 ¿A qué crees que se debe esto?
-
+    Se diferencian en el tamaño puesto que el primer INVITE tiene un tamaño de 982 bytes mientras que el segundo tiene un tamaño de 1181. Se debe a que el segundo INVITE incluye el campo PROXY-Authorization
 11. Una vez conectado, estudia el intercambio de tramas.
 * ¿Qué protocolo(s) se utiliza(n)? ¿Para qué sirven estos protocolos?
+    Se utilizan los protocolos RTP Y H.261. El RTP es un protocolo para transmisión de paquetes de audio a timepo real mientras que el H.261 transmite paquetes de video.
 * ¿Cuál es el tamaño de paquete de los mismos?
+    De los protocolos RTP, el tamaño de los paquetes es de 214 mientras que los del H.261 son de tamaño variable enviandose siempre de 2 en 2 teniendo siempre el primero de estos paquetes más de 1000 bytes mientras que el segundo no llega a los 800.
 * ¿Se utilizan bits de padding?
+    No puesto que podemos observar Padding = False
 * ¿Cuál es la periodicidad de los paquetes (en origen; nota que la
 captura es en destino)?
+    Aproximadamente cada 0,024 segundos
 * ¿Cuántos bits/segundo se envı́an?
+    64000 bits/s
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 12. Vamos a ver más a fondo el intercambio RTP. En Telephony hay una
