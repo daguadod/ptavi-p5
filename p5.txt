@@ -149,23 +149,35 @@ captura es en destino)?
 12. Vamos a ver más a fondo el intercambio RTP. En Telephony hay una
 opción RTP. Empecemos mirando los flujos RTP.
 * ¿Cuántos flujos hay? ¿por qué?
+    Hay dos flujos, uno de video y otro de adio 
 * ¿Cuántos paquetes se pierden?
+    Se pierden 0 paquetes que es el 0.0%
 * ¿Cuál es el valor máximo del delta? ¿Y qué es lo que significa el
 valor de delta?
+    1290 ms en ambos casos, significa el retardo de un paquete respecto al anterior.
 * ¿Cuáles son los valores de jitter (medio y máximo)? ¿Qué
-quiere decir eso? ¿Crees que estamos ante una conversación de
+quiere decir eso? 
+    El valor medio del jitter es 151,3655 mientras que el valor máximo en el primer caso es 183,096 mientras que en el segundo es 119,635 y el valor medio 42,500. ESto quiere decir que varía mucho el retardo de los mensajes.
+¿Crees que estamos ante una conversación de
 calidad?
+    No puesto que los valores del jitter varían mucho.
 
 13. Elige un paquete RTP de audio. Analiza el flujo de audio en Telephony
 -> RTP -> Stream Analysis.
 * ¿Cuánto valen el delta y el jitter para el primer paquete que
 ha llegado?
+    El valor tanto de Delta como de jitter es 0 puesto que es el primer paquete y no tenemos un paquete anterior de referencia.
 * ¿Podemos saber si éste es el primer paquete que nos han enviado?
+    Si puesto que no tiene un paquete anterior de referencia.
 * Los valores de jitter son menores de 10ms hasta un paquete
 dado. ¿Cuál?
+    Hasta el paquete 247.
 * ¿A qué se debe el cambio tan brusco del jitter?
+    Se sebe a que el ancho de banda disminuye.
 * ¿Es comparable el cambio en el valor de jitter con el del delta?
+    Es comparable puesto que cuanto mas varie el delta, más varia el jitter.
 ¿Cual es más grande?
+    Es más grande el valor del delta puesto que el retardo respecto al paquete anterior es mayor.
 
 14. En Telephony selecciona el menú VoIP calls. Verás que se lista la
 llamada de voz IP capturada en una ventana emergente. Selecciona
